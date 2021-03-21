@@ -46,10 +46,14 @@ void Client::send_data(const std::string& data) const
     }
 }
 
-std::string Client::receive_data(int char_count) const
+std::string Client::receive_data(int char_count, bool non_blocking) const
 {
     char buffer[char_count];
-    if (recv(server_socket_fd_, buffer, char_count, 0) <
+    int recv_flags = 0;
+    if (non_blocking) {
+        recv_flags = MSG_DONTWAIT;
+    }
+    if (recv(server_socket_fd_, buffer, char_count, recv_flags) <
         0) {
         utils::log_error("ERROR on receiving data from the server!");
     }

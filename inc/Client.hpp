@@ -25,7 +25,7 @@ class Client : public IClient
 
    public:
     Client(const std::string& server_ip_address, int server_port_number);
-    ~Client();
+    ~Client() override;
     void send_data(const std::string& data) const override;
-    std::string receive_data(int char_count = 256) const override;
+    std::string receive_data(int char_count = 256, bool non_blocking = false) const override;
 };

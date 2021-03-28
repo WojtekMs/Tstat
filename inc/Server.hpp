@@ -27,9 +27,14 @@ class Server : public IServer
     };
 
    public:
+    Server() = delete;
     Server(const std::string& ip_address, int port_number);
+    Server(const Server&) = delete;
+    Server(Server&&) = delete;
+    Server& operator=(const Server&) = delete;
+    Server& operator=(Server&&) = delete;
     ~Server() override;
     void accept_connections() override;
     void send_data(const std::string& data) const override;
-    std::string receive_data(int char_count = 256) const override;
+    std::string receive_data(int buffer_size = 256) const override;
 };

@@ -10,7 +10,7 @@ int main(int argc, char* argv[]) {
     std::string start_command{"start"};
     if (std::search(argument.begin(), argument.end(), start_command.begin(), start_command.end()) != argument.end()) {
         client.send_data("start");
-        std::cout << client.receive_data(256, true) << '\n';
+        std::cout << client.receive_data(256) << '\n';
     }
     if (std::search(argument.begin(), argument.end(), stop_command.begin(), stop_command.end()) != argument.end()) {
         client.send_data("stop");

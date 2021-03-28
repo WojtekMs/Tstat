@@ -2,12 +2,17 @@
 
 #include "utils.hpp"
 
-#include <arpa/inet.h>
+#include <thread>
 #include <iostream>
+
+#include <arpa/inet.h>
 #include <stdexcept>
 #include <string.h>
 #include <sys/socket.h>
+#include <cstring>
+#include <poll.h>
 #include <unistd.h>
+#include <fcntl.h>
 
 Server::Server(const std::string& ip_address, int port_number) :
   ip_address_(ip_address),
@@ -55,6 +60,7 @@ void Server::accept_connections()
     if (client_socket_fd_ < 0) {
         utils::log_error("ERROR on accept");
     }
+    // fcntl(client_socket_fd_, F_SETFL, O_NONBLOCK);
     std::cout << "Server: received connection from "
               << inet_ntoa(client_address_.sin_addr) << " port "
               << ntohs(client_address_.sin_port) << '\n';
@@ -66,22 +72,17 @@ void Server::send_data(const std::string& data) const
         throw std::logic_error(
             "Client socket is not valid, make sure you accepted connection first!\n");
     }
-    if (send(client_socket_fd_, const_cast<char*>(data.data()), data.size() + 1, 0) == -1) {
-        utils::log_error("ERROR on sending data!");
-    }
+    utils::send_str(data, client_socket_fd_);
 }
 
-std::string Server::receive_data(int char_count) const
+std::string Server::receive_data(int buffer_size) const
 {
     if (client_socket_fd_ < 0) {
         throw std::logic_error(
             "Client socket is not valid, make sure you accepted connection first!\n");
     }
-    char buffer[char_count];
-    if (recv(client_socket_fd_, buffer, char_count, 0) == -1) {
-        utils::log_error("ERROR on receiving data!");
-    }
-    return std::string(buffer);
+
+    return utils::receive_str(buffer_size, client_socket_fd_);
 }
 
 Server::~Server()

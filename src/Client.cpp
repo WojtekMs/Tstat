@@ -39,25 +39,15 @@ Client::Client(const std::string& server_ip_address, int server_port_number)
               << " established succesfully!\n";
 }
 
+
 void Client::send_data(const std::string& data) const
 {
-    if (send(server_socket_fd_, const_cast<char*>(data.data()), data.size() + 1, 0) < 0) {
-        utils::log_error("ERROR on sending data to the server!");
-    }
+    utils::send_str(data, server_socket_fd_);
 }
 
-std::string Client::receive_data(int char_count, bool non_blocking) const
+std::string Client::receive_data(int buffer_size) const
 {
-    char buffer[char_count];
-    int recv_flags = 0;
-    if (non_blocking) {
-        recv_flags = MSG_DONTWAIT;
-    }
-    if (recv(server_socket_fd_, buffer, char_count, recv_flags) <
-        0) {
-        utils::log_error("ERROR on receiving data from the server!");
-    }
-    return std::string(buffer);
+    return utils::receive_str(buffer_size, server_socket_fd_);
 }
 
 Client::~Client()

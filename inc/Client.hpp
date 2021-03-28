@@ -24,8 +24,13 @@ class Client : public IClient
                              int server_port_number);
 
    public:
+    Client() = delete;
     Client(const std::string& server_ip_address, int server_port_number);
+    Client(const Client&) = delete;
+    Client(Client&&) = delete;
+    Client& operator=(const Client&) = delete;
+    Client& operator=(Client&&) = delete;
     ~Client() override;
     void send_data(const std::string& data) const override;
-    std::string receive_data(int char_count = 256, bool non_blocking = false) const override;
+    std::string receive_data(int buffer_size = 256) const override;
 };

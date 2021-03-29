@@ -1,6 +1,7 @@
 #pragma once
 namespace config{
 constexpr char SERVER_IP_ADDR[] = "127.0.0.1";
-constexpr int SERVER_PORT = 5004;
+constexpr int SERVER_PORT = 5003;
+constexpr char log_save_path[] = "/home/wojtek/networking/tstat/data";
 
 }

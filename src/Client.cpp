@@ -42,6 +42,7 @@ Client::Client(const std::string& server_ip_address, int server_port_number)
 
 void Client::send_data(const std::string& data) const
 {
+    if (data.size())
     utils::send_str(data, server_socket_fd_);
 }
 
@@ -52,5 +53,9 @@ std::string Client::receive_data(int buffer_size) const
 
 Client::~Client()
 {
+    close(server_socket_fd_);
+}
+
+void Client::terminate_connection() {
     close(server_socket_fd_);
 }

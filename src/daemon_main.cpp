@@ -22,9 +22,11 @@ int main() {
         daemon_serv.accept_connections();
         auto data = daemon_serv.receive_data();
         std::cout << data << '\n';
-        std::stringstream stream(data);
+        std::stringstream stream{};
+        stream.str(data);
         std::vector<std::string> args{};
         std::copy(std::istream_iterator<std::string>(stream), std::istream_iterator<std::string>{}, std::back_inserter(args));
+        stream.clear();
         std::string start_flag{"start"};
         std::string stop_flag{"stop"};
         std::string task_name{args[0]};
@@ -38,8 +40,8 @@ int main() {
             stream.str("");
             stream << "Time elapsed: " << time_d.get_elapsed_time() << '\n';
             stream << "Saved to file: " << time_d.get_file_path(task_name).second << '\n';
-            daemon_serv.send_data(stream.str());
-            std::cout << stream.str() << '\n';
+            std::string data_to_send = stream.str();
+            daemon_serv.send_data(data_to_send);
         }
     }   
     return 0; 

@@ -31,6 +31,7 @@ class Client : public IClient
     Client& operator=(const Client&) = delete;
     Client& operator=(Client&&) = delete;
     ~Client() override;
+    void terminate_connection();
     void send_data(const std::string& data) const override;
     std::string receive_data(int buffer_size = 256) const override;
 };

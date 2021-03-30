@@ -26,6 +26,12 @@ std::string receive_str(int buffer_size, int socket_fd);
  */
 void send_str(const std::string& string, int socket_fd);
 
+void send_string(const std::string& string, int socket_fd, int send_flags = 0);
+std::string receive_string(int socket_fd, int message_size, int send_flags = 0);
+
+int max_message_size();
+std::string get_message_header(int message_size);
+
 template <typename Array>
 constexpr int array_size(const Array& arr)
 {

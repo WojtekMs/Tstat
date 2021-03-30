@@ -24,8 +24,8 @@ void replying_server(Server & server)
 int main()
 {
     Server server(config::SERVER_IP_ADDR, config::SERVER_PORT);
+    server.accept_connections();
     while (true) {
-        server.accept_connections();
         auto data = server.receive_data();
         std::cout << data << '\n';
         std::cout << "size: " << data.size() << '\n';

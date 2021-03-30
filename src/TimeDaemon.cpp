@@ -57,6 +57,7 @@ std::string TimeDaemon::get_elapsed_time() const
     auto minutes = seconds / 60;
     auto hours = minutes / 60;
     seconds %= 60;
+    minutes %= 60;
     if (hours < 10) {
         stream << 0;
     }

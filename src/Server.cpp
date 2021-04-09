@@ -4,6 +4,7 @@
 
 #include <thread>
 #include <iostream>
+#include <vector>
 
 #include <arpa/inet.h>
 #include <stdexcept>

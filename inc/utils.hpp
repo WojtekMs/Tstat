@@ -1,28 +1,38 @@
 #pragma once
-#include <string>
+
 #include <memory>
 #include <poll.h>
+#include <string>
+#include <vector>
+#include <algorithm>
 namespace utils
 {
 void log_error(const std::string& error_msg);
 std::unique_ptr<struct pollfd> makePollFd(int poll_fd, short events);
+std::vector<std::string> parseArgs(const std::string&);
+
+template <typename Container>
+bool contains(const Container& container, const std::string& input) {
+    return std::find(std::begin(container), std::end(container), input) != std::end(container);
+}
 
 /**
  * @brief this function is used to receive char data from stream sockets
  * this function reads characters from the stream until the first occurence of '\0'
- * 
- * @param buffer_size 
- * @param socket_fd 
- * @return std::string 
+ *
+ * @param buffer_size
+ * @param socket_fd
+ * @return std::string
  */
 std::string receive_str(int buffer_size, int socket_fd);
 
 /**
  * @brief this functions is used to send char data by stream socket
- * this function makes sure that all bytes were sent out, it sends out c style string (null terminated)
- * 
- * @param string 
- * @param socket_fd 
+ * this function makes sure that all bytes were sent out, it sends out c style string
+ * (null terminated)
+ *
+ * @param string
+ * @param socket_fd
  */
 void send_str(const std::string& string, int socket_fd);
 

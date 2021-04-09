@@ -2,9 +2,9 @@
 
 #include "config.hpp"
 
-#include <algorithm>
 #include <cstring>
 #include <iostream>
+#include <iterator>
 #include <sstream>
 #include <stdio.h>
 #include <stdlib.h>
@@ -27,6 +27,17 @@ std::unique_ptr<struct pollfd> makePollFd(int poll_fd, short events)
     poll.events |= events;
     return std::make_unique<struct pollfd>(poll);
 }
+
+std::vector<std::string> parseArgs(const std::string& data) {
+    std::stringstream stream{};
+    stream.str(data);
+    std::vector<std::string> args{};
+    std::copy(std::istream_iterator<std::string>(stream), std::istream_iterator<std::string>{}, std::back_inserter(args));
+    return args;
+}
+
+
+
 
 // przyjeto zalozenie, ze nadawca wysyla informacje wraz z '\0'
 // przyjeto zalozenie, ze odebrana w ten sposob wiadomosc zapisana w std::string nie

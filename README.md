@@ -1,6 +1,6 @@
 # Tstat
 
-Tstat is an application that is supposed to help you realize how you manage your time spent at the computer. By giving simple commands you can activate appropriate counters that will measure the amount of time you spent at a certain activity.  
+Tstat is an application that is supposed to help you realize how you manage your time spent at the computer. By giving simple commands you can activate appropriate counters that will measure the amount of time you spend at a certain activity.  
 This application is built upon Client / Server architecture, using networking lib (based on TCP/IP Sockets) created by myself. Networking library is appended to this repository as a git submodule. User is supposed to use this application by issuing commands to the client app (`tstat`) which is communicating with the server app (`tstat_daemon`). Server is running as a daemon in the background.  
 Further development plans assume that the application will save the results in a small data base and will provide you with data visualization in order to discover yet unkown trends or realize what is the most time consuming activity, which may lead to task optimization.
 

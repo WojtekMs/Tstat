@@ -1,0 +1,3 @@
+[submodule "submodules/networking"]
+	path = submodules/networking
+	url = git@github.com:WojtekMs/Networking.git

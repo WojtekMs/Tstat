@@ -8,5 +8,6 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 add_subdirectory(submodules/networking)
 add_subdirectory(src/tstat)
 add_subdirectory(executables/tstat)
+add_subdirectory(test)
 
 install(TARGETS tstat tstat_daemon DESTINATION ${CMAKE_BINARY_DIR} COMPONENT tstat)

@@ -3,6 +3,7 @@
 #include "tstat/utils.hpp"
 #include "tstat/config.hpp"
 #include <stdexcept>
+#include <sstream>
 
 ArgParser::ArgParser(const std::string& input) {
     auto args = utils::parseArgs(input);
@@ -12,13 +13,8 @@ ArgParser::ArgParser(const std::string& input) {
     if (!utils::contains(config::COMMANDS, args[0])) {
         throw std::invalid_argument("First argument must be command!");
     }
-    if (args.size() < 2 && utils::contains(config::BINARY_COMMANDS, args[1])) {
-        throw std::invalid_argument("Command: " + args[1] + " requires second argument!");
-    }
-    if (args.size() > 1) {
-        task_ = args[1];
-    }
     command_ = args[0];
+    args_ = std::vector<std::string>(args.begin() + 1, args.end());
 }
 
 ArgParser::ArgParser(char* argv[], int argc) {
@@ -28,19 +24,25 @@ ArgParser::ArgParser(char* argv[], int argc) {
     if (!utils::contains(config::COMMANDS, argv[1])) {
         throw std::invalid_argument("First argument must be command!");
     }
-    if (argc < 3 && utils::contains(config::BINARY_COMMANDS, argv[1])) {
-        throw std::invalid_argument("Command: " + std::string(argv[1]) + " requires second argument!");
-    }
-    if (argc > 2) {
-        task_ = argv[2];
-    }
     command_ = argv[1];
+    for (int i = 2; i < argc; ++i) {
+        args_.push_back(argv[i]);
+    }
 }
 
-std::string ArgParser::getTask() const {
-    return task_;
+std::vector<std::string> ArgParser::getCommandArgs() const noexcept {
+    return args_;
 }
 
-std::string ArgParser::getCommand() const {
+std::string ArgParser::getCommand() const noexcept {
     return command_;
+}
+
+std::string ArgParser::getArgsAsString() const noexcept {
+    std::stringstream stream{};
+    stream << command_ << " ";
+    for (const auto& arg: args_) {
+        stream << arg << " ";
+    }
+    return stream.str();
 }

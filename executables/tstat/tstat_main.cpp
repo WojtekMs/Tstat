@@ -15,9 +15,7 @@ int main(int argc, char* argv[])
                               networking::config::SERVER_PORT);
     try {
         ArgParser args(argv, argc);
-        std::string data = args.getCommand() + " " + args.getTask();
-        std::cout << data << '\n';
-        client.send_data(data);
+        client.send_data(args.getArgsAsString());
         std::cout << client.receive_data() << '\n';
     } catch (std::invalid_argument& e) {
         std::cerr << e.what() << '\n';

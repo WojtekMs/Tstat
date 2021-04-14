@@ -6,7 +6,6 @@
 
 class TimeCounter
 {
-    // std::unique_ptr<IServer> server_{};
     std::chrono::time_point<std::chrono::system_clock> start_{};
     std::chrono::time_point<std::chrono::system_clock> stop_{};
     std::string task_name_{};

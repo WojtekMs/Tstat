@@ -1,12 +1,16 @@
 #include "tstat/StartCommand.hpp"
+#include "tstat/CommandError.hpp"
 
 #include <sstream>
 
-StartCommand::StartCommand(TimeCounter& time_counter, networking::IServer& server, const std::string& task_name) :
+StartCommand::StartCommand(TimeCounter& time_counter, networking::IServer& server, const std::vector<std::string>& args) :
   time_counter_(time_counter),
-  server_(server),
-  task_name_(task_name)
+  server_(server)
 {
+  if (args.size() != 1) {
+    throw CommandError("Start command needs one argument: task name!");
+  }
+  task_name_ = args[0];
 }
 
 void StartCommand::execute()
@@ -24,6 +28,6 @@ void StartCommand::execute()
     server_.send_data(stream.str());
 }
 
-std::shared_ptr<ICommand> makeStartCommand(TimeCounter& tc, networking::IServer& server, const std::string& task) {
-    return std::make_shared<StartCommand>(tc, server, task);
+std::shared_ptr<ICommand> makeStartCommand(TimeCounter& tc, networking::IServer& server, const std::vector<std::string>& args) {
+    return std::make_shared<StartCommand>(tc, server, args);
 }

@@ -4,6 +4,7 @@
 #include "tstat/ICommand.hpp"
 #include "tstat/TimeCounter.hpp"
 #include <memory>
+#include <vector>
 
 class StopCommand : public ICommand
 {
@@ -16,4 +17,4 @@ class StopCommand : public ICommand
     void execute() override;
 };
 
-std::shared_ptr<ICommand> makeStopCommand(TimeCounter& tc, networking::IServer& server, const std::string& = "");
+std::shared_ptr<ICommand> makeStopCommand(TimeCounter& tc, networking::IServer& server, const std::vector<std::string>& = {});

@@ -23,6 +23,6 @@ void StopCommand::execute() {
     server_.send_data(stream.str());    
 }
 
-std::shared_ptr<ICommand> makeStopCommand(TimeCounter& tc, networking::IServer& server, const std::string&) {
+std::shared_ptr<ICommand> makeStopCommand(TimeCounter& tc, networking::IServer& server, const std::vector<std::string>&) {
     return std::make_shared<StopCommand>(tc, server);
 }

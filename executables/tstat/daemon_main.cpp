@@ -27,7 +27,7 @@ int main()
         auto data = daemon_serv.receive_data();
         try {
             ArgParser args(data);
-            CommandLoader loader(time_d, daemon_serv, args.getCommandArgs().front());
+            CommandLoader loader(time_d, daemon_serv, args.getCommandArgs());
             auto command = loader.getCommand(args.getCommand());
             command->execute();
         } catch (std::exception& e) {

@@ -22,6 +22,6 @@ void AbortCommand::execute()
   server_.send_data(stream.str());
 }
 
-std::shared_ptr<ICommand> makeAbortCommand(TimeCounter& tc, networking::IServer& server, const std::string&) {
+std::shared_ptr<ICommand> makeAbortCommand(TimeCounter& tc, networking::IServer& server, const std::vector<std::string>&) {
     return std::make_shared<AbortCommand>(tc, server);
 }

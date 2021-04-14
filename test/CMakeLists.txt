@@ -1,5 +1,8 @@
 add_subdirectory(gtest)
 
-add_executable(arg_parser-ut ArgParser-ut.cpp)
-target_link_libraries(arg_parser-ut gtest_main tstat-lib)
-add_test(NAME tstat_test COMMAND arg_parser-ut)
+
+set(TSTAT_TEST_SRC ArgParser-ut.cpp StartCommand-ut.cpp)
+add_executable(tstat_test ${TSTAT_TEST_SRC})
+
+target_link_libraries(tstat_test gtest_main tstat-lib)
+add_test(NAME tstat_test COMMAND tstat_test)

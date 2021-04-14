@@ -5,6 +5,7 @@
 #include "tstat/TimeCounter.hpp"
 #include <string>
 #include <memory>
+#include <vector>
 
 class AbortCommand : public ICommand {
     TimeCounter& time_counter_;
@@ -15,4 +16,4 @@ class AbortCommand : public ICommand {
     void execute() override;
 };
 
-std::shared_ptr<ICommand> makeAbortCommand(TimeCounter& tc, networking::IServer& server, const std::string& task = "");
+std::shared_ptr<ICommand> makeAbortCommand(TimeCounter& tc, networking::IServer& server, const std::vector<std::string>& = {});

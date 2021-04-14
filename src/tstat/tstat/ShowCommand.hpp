@@ -1,8 +1,10 @@
 #pragma once
 
+#include "tstat/ICommand.hpp"
+
 #include <memory>
 #include <string>
-#include "tstat/ICommand.hpp"
+#include <vector>
 
 class TimeCounter;
 
@@ -22,4 +24,4 @@ class ShowCommand : public ICommand
 
 std::shared_ptr<ICommand> makeShowCommand(TimeCounter& tc,
                                           networking::IServer& server,
-                                          const std::string& = {});
+                                          const std::vector<std::string>& = {});

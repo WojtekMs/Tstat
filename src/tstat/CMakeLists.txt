@@ -6,6 +6,7 @@ add_library(
   src/StartCommand.cpp
   src/StopCommand.cpp
   src/AbortCommand.cpp
+  src/ShowCommand.cpp
   src/utils.cpp
   src/IdleState.cpp
   src/CountingState.cpp

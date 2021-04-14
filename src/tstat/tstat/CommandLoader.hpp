@@ -1,15 +1,15 @@
 #pragma once
 
 #include "tstat/AbortCommand.hpp"
+#include "tstat/ShowCommand.hpp"
 #include "tstat/StartCommand.hpp"
 #include "tstat/StopCommand.hpp"
+#include "tstat/config.hpp"
 
 #include <functional>
 #include <memory>
 #include <string>
 #include <unordered_map>
-// #include "ShowCommand.hpp"
-#include "tstat/config.hpp"
 
 class TimeCounter;
 class ICommand;
@@ -29,12 +29,10 @@ class CommandLoader
         std::function<std::shared_ptr<ICommand>(TimeCounter&,
                                                 networking::IServer&,
                                                 const std::vector<std::string>&)>>
-        commands_{
-            std::make_pair(config::START_COMMAND, makeStartCommand),
-            std::make_pair(config::STOP_COMMAND, makeStopCommand),
-            std::make_pair(config::ABORT_COMMAND, makeAbortCommand),
-            // std::make_pair(config::SHOW_COMMAND, makeShowCommand)
-        };
+        commands_{std::make_pair(config::START_COMMAND, makeStartCommand),
+                  std::make_pair(config::STOP_COMMAND, makeStopCommand),
+                  std::make_pair(config::ABORT_COMMAND, makeAbortCommand),
+                  std::make_pair(config::SHOW_COMMAND, makeShowCommand)};
 
    public:
     CommandLoader() = delete;

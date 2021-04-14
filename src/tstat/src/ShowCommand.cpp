@@ -16,7 +16,7 @@ void ShowCommand::execute()
 
 std::shared_ptr<ICommand> makeShowCommand(TimeCounter& tc,
                                           networking::IServer& server,
-                                          const std::string&)
+                                          const std::vector<std::string>&)
 {
     return std::make_shared<ShowCommand>(tc, server);
 }

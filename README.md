@@ -31,8 +31,6 @@ Currently it is posible to remove folders created by this application by simple 
 - feature that allows you to see what tasks (tables/directories) are already present in the database
 - feature that allows to see graphical interpretation of data recorded
 - state command pattern that will help manage time counter
-- argument validation should be implemented in the command objects not in the arg parser  
-(arg parser should only make sure that user passed a valid command object)
 - feature that allows you to peek at what is the current state of the server / tstat daemon
   - is it measuring time?
   - what task is currently being measured?

@@ -1,6 +1,11 @@
 #include "tstat/CommandLoader.hpp"
 
-CommandLoader::CommandLoader(TimeCounter& tc, networking::IServer& server, const std::vector<std::string>& args) :
+#include "networking/IServer.hpp"
+#include "tstat/TimeCounter.hpp"
+
+CommandLoader::CommandLoader(TimeCounter& tc,
+                             networking::IServer& server,
+                             const std::vector<std::string>& args) :
   counter_(tc),
   server_(server),
   args_(args)

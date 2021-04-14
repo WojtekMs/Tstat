@@ -1,24 +1,35 @@
 #pragma once
-#include "networking/IServer.hpp"
+
+#include "tstat/IdleState.hpp"
 
 #include <chrono>
 #include <memory>
 
+class IState;
+
+namespace networking
+{
+class IServer;
+}
 class TimeCounter
 {
     std::chrono::time_point<std::chrono::system_clock> start_{};
     std::chrono::time_point<std::chrono::system_clock> stop_{};
     std::string task_name_{};
-    bool is_counting_{false};
+    std::unique_ptr<IState> counter_state_{std::make_unique<IdleState>(*this)};
 
+    friend class IdleState;
+    friend class CountingState;
+    friend class StoppedState;
+
+    void reset();
    public:
     TimeCounter() = default;
     void start(const std::string& task_name);
     void stop();
     void abort();
     void save();
-    std::string get_elapsed_time() const;
-    std::pair<std::string, std::string> get_file_path() const;
-    std::string get_current_state_info() const;
-    std::string get_current_task() const;
+    std::string getElapsedTime() const;
+    std::string getFilePath() const;
+    std::string getCurrentStateInfo() const;
 };

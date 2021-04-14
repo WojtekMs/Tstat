@@ -30,7 +30,6 @@ Currently it is posible to remove folders created by this application by simple 
   - for example: ring a bell when 1hr passed
 - feature that allows you to see what tasks (tables/directories) are already present in the database
 - feature that allows to see graphical interpretation of data recorded
-- state command pattern that will help manage time counter
 - feature that allows you to peek at what is the current state of the server / tstat daemon
   - is it measuring time?
   - what task is currently being measured?

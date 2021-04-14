@@ -1,28 +1,33 @@
+#include "networking/IServer.hpp"
+#include "tstat/CommandError.hpp"
+#include "tstat/StartCommand.hpp"
+#include "tstat/TimeCounter.hpp"
+
 #include <gtest/gtest.h>
 
-#include "tstat/StartCommand.hpp"
-#include "tstat/CommandError.hpp"
-
-class MockServer : public networking::IServer {
-    public:
+class MockServer : public networking::IServer
+{
+   public:
     void accept_connections() {}
-    void send_data(const std::string& data) const {}
-    std::string receive_data() const {}
+    void send_data(const std::string&) const {}
+    std::string receive_data() const { return {}; }
 };
 
-class StartCommandTest : public ::testing::Test {
-    protected:
+class StartCommandTest : public ::testing::Test
+{
+   protected:
     TimeCounter counter{};
     MockServer server{};
-
 };
 
-TEST_F(StartCommandTest, ShouldThrowCommandErrorWhenNoArgumentSupplied) {
+TEST_F(StartCommandTest, ShouldThrowCommandErrorWhenNoArgumentSupplied)
+{
     std::vector<std::string> args{};
     EXPECT_THROW(StartCommand comm(counter, server, args), CommandError);
 }
 
-TEST_F(StartCommandTest, ShouldThrowCommandErrorWhenMoreArgumentsSupplied) {
+TEST_F(StartCommandTest, ShouldThrowCommandErrorWhenMoreArgumentsSupplied)
+{
     std::vector<std::string> args{"writing", "dancing"};
     EXPECT_THROW(StartCommand comm(counter, server, args), CommandError);
 }

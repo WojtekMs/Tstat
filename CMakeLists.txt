@@ -4,6 +4,9 @@ project(tstat)
 
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
+set(COMPILE_FLAGS -Wall -pedantic -Wconversion -Wextra)
+# set(CMAKE_CXX_FLAGS ${CMAKE_CXX_FLAGS} ${COMPILE_FLAGS})
+add_compile_options(${COMPILE_FLAGS})
 
 enable_testing()
 
@@ -13,3 +16,5 @@ add_subdirectory(executables/tstat)
 add_subdirectory(test)
 
 install(TARGETS tstat tstat_daemon DESTINATION ${CMAKE_BINARY_DIR} COMPONENT tstat)
+
+

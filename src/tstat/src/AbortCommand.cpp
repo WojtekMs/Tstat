@@ -1,5 +1,8 @@
 #include "tstat/AbortCommand.hpp"
 
+#include "networking/IServer.hpp"
+#include "tstat/TimeCounter.hpp"
+
 #include <sstream>
 
 AbortCommand::AbortCommand(TimeCounter& time_counter, networking::IServer& server) :
@@ -12,14 +15,11 @@ void AbortCommand::execute()
 {
   try {
     time_counter_.abort();
+    server_.send_data(time_counter_.getCurrentStateInfo());
   }
   catch (std::logic_error& e) {
     server_.send_data(e.what());
-    return;
   }
-  std::stringstream stream{};
-  stream << "Counter aborted!\n";
-  server_.send_data(stream.str());
 }
 
 std::shared_ptr<ICommand> makeAbortCommand(TimeCounter& tc, networking::IServer& server, const std::vector<std::string>&) {

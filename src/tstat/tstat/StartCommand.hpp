@@ -1,12 +1,18 @@
 #pragma once
 
-#include "networking/IServer.hpp"
+
 #include "tstat/ICommand.hpp"
-#include "tstat/TimeCounter.hpp"
 
 #include <memory>
 #include <string>
 #include <vector>
+
+class TimeCounter;
+
+namespace networking
+{
+class IServer;
+}
 
 class StartCommand : public ICommand
 {

@@ -26,8 +26,8 @@ int main()
     TimeCounter time_d;
     while (true) {
         daemon_serv.accept_connections();
-        auto data = daemon_serv.receive_data();
         try {
+            auto data = daemon_serv.receive_data();
             ArgParser args(data);
             CommandLoader loader(time_d, daemon_serv, args.getCommandArgs());
             auto command = loader.getCommand(args.getCommand());

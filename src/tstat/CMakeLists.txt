@@ -7,6 +7,9 @@ add_library(
   src/StopCommand.cpp
   src/AbortCommand.cpp
   src/utils.cpp
+  src/IdleState.cpp
+  src/CountingState.cpp
+  src/StoppedState.cpp
   )
 
 target_link_libraries(tstat-lib networking-lib)

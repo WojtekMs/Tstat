@@ -40,11 +40,15 @@ void getCommandFromCLI(int argc, char* argv[]) {
         ArgParser args(argv, argc);
         client.send_data(args.getArgsAsString());
         std::cout << client.receive_data() << '\n';
-    } catch (std::invalid_argument& e) {
+    } catch (const std::invalid_argument& e) {
         std::cerr << e.what() << '\n';
         return;
     }
     catch (const std::logic_error& e) {
+        std::cerr << e.what() << '\n';
+        return;
+    }
+    catch (const networking::EndConnection& e) {
         std::cerr << e.what() << '\n';
         return;
     }

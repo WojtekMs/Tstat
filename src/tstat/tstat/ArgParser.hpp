@@ -10,7 +10,7 @@ class ArgParser
    public:
     ArgParser() = delete;
     explicit ArgParser(const std::string& input);
-    explicit ArgParser(char*[], int);
+    ArgParser(char*[], int);
     std::string getCommand() const noexcept;
     std::vector<std::string> getCommandArgs() const noexcept;
     std::string getArgsAsString() const noexcept;

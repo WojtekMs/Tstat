@@ -14,7 +14,9 @@ ArgParser::ArgParser(const std::string& input) {
         throw std::invalid_argument("First argument must be command!");
     }
     command_ = args[0];
-    args_ = std::vector<std::string>(args.begin() + 1, args.end());
+    if (args.size() > 1u) {
+        args_ = std::vector<std::string>(std::next(args.begin()), args.end());
+    }
 }
 
 ArgParser::ArgParser(char* argv[], int argc) {

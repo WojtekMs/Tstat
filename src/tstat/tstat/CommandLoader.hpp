@@ -4,6 +4,7 @@
 #include "tstat/ShowCommand.hpp"
 #include "tstat/StartCommand.hpp"
 #include "tstat/StopCommand.hpp"
+#include "tstat/ListCommand.hpp"
 #include "tstat/config.hpp"
 
 #include <functional>
@@ -32,6 +33,7 @@ class CommandLoader
         commands_{std::make_pair(config::START_COMMAND, makeStartCommand),
                   std::make_pair(config::STOP_COMMAND, makeStopCommand),
                   std::make_pair(config::ABORT_COMMAND, makeAbortCommand),
+                  std::make_pair(config::LIST_COMMAND, makeListCommand),
                   std::make_pair(config::SHOW_COMMAND, makeShowCommand)};
 
    public:

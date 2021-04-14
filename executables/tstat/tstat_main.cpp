@@ -30,6 +30,10 @@ void getCommandFromCin()
             std::cerr << e.what() << '\n';
             continue;
         }
+        catch (const std::logic_error& e) {
+            std::cerr << e.what() << '\n';
+            continue;
+        }
     }
 }
 

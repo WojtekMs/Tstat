@@ -22,16 +22,14 @@ This application handles commands:
 - start \<task name> (this command starts the clock associated with a certain task name given as argument)
 - stop (this command stops the clock and saves the time elapsed to a directory called as task name given at start)
 - abort (this command cancels time measuring)
+- list (allows you to see what tasks (tables/directories) are already present in the database)
+- show (this command displays current state of the counter)
 
 Currently it is posible to remove folders created by this application by simple rm commands, so please be cautious when modifying data directory.
 
 ## TODO
 - feature that indicates when a certain amount of time already elapsed 
   - for example: ring a bell when 1hr passed
-- feature that allows you to see what tasks (tables/directories) are already present in the database
 - feature that allows to see graphical interpretation of data recorded
-- feature that allows you to peek at what is the current state of the server / tstat daemon
-  - is it measuring time?
-  - what task is currently being measured?
-  - how much time elapsed since the beginning of the measuring?
+- feature that allows you to clear database
 

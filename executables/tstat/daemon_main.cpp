@@ -1,9 +1,11 @@
 #include "networking/Server.hpp"
 #include "networking/config.hpp"
 #include "networking/utils.hpp"
+#include "networking/EndConnection.hpp"
 #include "tstat/ArgParser.hpp"
 #include "tstat/CommandLoader.hpp"
 #include "tstat/TimeCounter.hpp"
+#include "tstat/CommandError.hpp"
 
 #include <algorithm>
 #include <chrono>
@@ -30,7 +32,15 @@ int main()
             CommandLoader loader(time_d, daemon_serv, args.getCommandArgs());
             auto command = loader.getCommand(args.getCommand());
             command->execute();
-        } catch (std::exception& e) {
+        } 
+        catch (const CommandError& e) {
+            daemon_serv.send_data(e.what());
+            continue;
+        }
+        catch (const networking::EndConnection& e) {
+            continue;
+        }
+        catch (std::exception& e) {
             std::clog << "server: " << e.what() << '\n';
             continue;
         }

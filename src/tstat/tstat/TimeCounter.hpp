@@ -22,7 +22,7 @@ class TimeCounter
     friend class CountingState;
     friend class StoppedState;
 
-    void reset();
+    void reset() noexcept;
    public:
     TimeCounter() = default;
     void start(const std::string& task_name);
@@ -31,5 +31,5 @@ class TimeCounter
     void save();
     std::string getElapsedTime() const;
     std::string getFilePath() const;
-    std::string getCurrentStateInfo() const;
+    std::string getCurrentStateInfo() const noexcept;
 };

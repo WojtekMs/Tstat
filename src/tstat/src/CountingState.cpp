@@ -42,7 +42,7 @@ std::string CountingState::getFilePath() const {
     return utils::join('/', config::log_save_path, counter_.task_name_, utils::getCurrentDate());
 }
 
-std::string CountingState::getCurrentStateInfo() const {
+std::string CountingState::getCurrentStateInfo() const noexcept {
     std::stringstream stream{};
     stream << "State: counting\n";
     stream << "Task: " << counter_.task_name_ << '\n';

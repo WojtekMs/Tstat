@@ -25,6 +25,9 @@ TEST(UtilsTest, ParseArgsShouldReturnEmptyVectorWhenEmptyString)
 TEST(UtilsTest, JoinShouldTakeVariadicNumberOfArguments)
 {
     auto actualOutput = utils::join('/', "home", "wojtek", "networking");
+    actualOutput = utils::join('/', "home");
+    actualOutput = utils::join('/', "home", "wojtek");
+    actualOutput = utils::join('/', "home", "wojtek", "networking", "donkey");
 }
 
 TEST(UtilsTest, JoinShouldNotAddCharacterAtTheEndOfTheString)
@@ -33,6 +36,7 @@ TEST(UtilsTest, JoinShouldNotAddCharacterAtTheEndOfTheString)
     auto actualOutput = utils::join('/', "home", "wojtek", "networking");
     EXPECT_EQ(expectedOutput, actualOutput);
 }
+
 
 TEST(UtilsTest, JoinShouldWorkWithManyCharacters)
 {

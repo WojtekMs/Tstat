@@ -15,7 +15,7 @@
 namespace utils
 {
 
-std::vector<std::string> parseArgs(const std::string& data)
+std::vector<std::string> parseArgs(const std::string& data) noexcept
 {
     std::stringstream stream{};
     stream.str(data);
@@ -26,7 +26,7 @@ std::vector<std::string> parseArgs(const std::string& data)
     return args;
 }
 
-std::string getElapsedTime(const TimePoint& stop, const TimePoint& start)
+std::string getElapsedTime(const TimePoint& stop, const TimePoint& start) noexcept
 {
     std::stringstream stream{};
     auto seconds = std::chrono::duration_cast<std::chrono::seconds>(stop - start).count();
@@ -49,7 +49,7 @@ std::string getElapsedTime(const TimePoint& stop, const TimePoint& start)
     return stream.str();
 }
 
-std::string getCurrentDate() {
+std::string getCurrentDate() noexcept {
     std::stringstream stream{};
     auto time = std::time(nullptr);
     stream << std::put_time(std::localtime(&time), "%d_%m_%Y");

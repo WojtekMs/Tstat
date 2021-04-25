@@ -51,7 +51,7 @@ std::string StoppedState::getFilePath() const {
     return utils::join('/', config::log_save_path, counter_.task_name_, utils::getCurrentDate());
 }
 
-std::string StoppedState::getCurrentStateInfo() const {
+std::string StoppedState::getCurrentStateInfo() const noexcept {
     std::stringstream stream{};
     stream << "State: stopped \n";
     stream << "Task: " << counter_.task_name_ << '\n';

@@ -12,6 +12,6 @@ class IState {
     virtual void save() = 0;
     virtual std::string getElapsedTime() const = 0;
     virtual std::string getFilePath() const = 0;
-    virtual std::string getCurrentStateInfo() const = 0;
+    virtual std::string getCurrentStateInfo() const noexcept = 0;
 
 };

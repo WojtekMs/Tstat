@@ -38,7 +38,7 @@ std::string IdleState::getFilePath() const {
     return {};
 }
 
-std::string IdleState::getCurrentStateInfo() const {
+std::string IdleState::getCurrentStateInfo() const noexcept {
     std::stringstream stream{};
     stream << "State: idle\n";
     stream << "Task: \n";

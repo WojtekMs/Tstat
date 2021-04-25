@@ -42,12 +42,12 @@ std::string TimeCounter::getElapsedTime() const
     return counter_state_->getElapsedTime();
 }
 
-std::string TimeCounter::getCurrentStateInfo() const
+std::string TimeCounter::getCurrentStateInfo() const noexcept
 {
     return counter_state_->getCurrentStateInfo();
 }
 
-void TimeCounter::reset() {
+void TimeCounter::reset() noexcept {
     task_name_ = "";
     start_ = decltype(start_){};
     stop_ = decltype(stop_){};

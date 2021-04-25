@@ -17,5 +17,5 @@ class StoppedState : public IState
     void save() override;
     std::string getElapsedTime() const override;
     std::string getFilePath() const override;
-    std::string getCurrentStateInfo() const override;
+    std::string getCurrentStateInfo() const noexcept override;
 };

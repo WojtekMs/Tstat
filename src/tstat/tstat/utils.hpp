@@ -14,7 +14,9 @@ std::vector<std::string> parseArgs(const std::string&);
 
 template <typename ...T>
 std::string join(char sign, T&&... args) {
-    return ((std::string(args) + sign) + ...);
+    std::string joined_str = ((std::string(args) + sign) + ...);
+    joined_str.erase(std::prev(joined_str.end()));
+    return joined_str;
 }
 
 template < template <typename T> typename Container >

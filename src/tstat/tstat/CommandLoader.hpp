@@ -39,5 +39,5 @@ class CommandLoader
    public:
     CommandLoader() = delete;
     CommandLoader(TimeCounter&, networking::IServer&, const std::vector<std::string>&);
-    std::shared_ptr<ICommand> getCommand(const std::string& command) const noexcept;
+    std::shared_ptr<ICommand> getCommand(const std::string& command) const;
 };

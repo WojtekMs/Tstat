@@ -24,4 +24,4 @@ class ShowCommand : public ICommand
 
 std::shared_ptr<ICommand> makeShowCommand(TimeCounter& tc,
                                           networking::IServer& server,
-                                          const std::vector<std::string>& = {});
+                                          const std::vector<std::string>& = {}) noexcept;

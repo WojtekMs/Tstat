@@ -14,7 +14,7 @@ CommandLoader::CommandLoader(TimeCounter& tc,
 {
 }
 
-std::shared_ptr<ICommand> CommandLoader::getCommand(const std::string& command) const noexcept
+std::shared_ptr<ICommand> CommandLoader::getCommand(const std::string& command) const
 {
   try {
     return commands_.at(command)(counter_, server_, args_);

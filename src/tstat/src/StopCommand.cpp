@@ -28,7 +28,7 @@ void StopCommand::execute()
 
 std::shared_ptr<ICommand> makeStopCommand(TimeCounter& tc,
                                           networking::IServer& server,
-                                          const std::vector<std::string>&)
+                                          const std::vector<std::string>&) noexcept
 {
     return std::make_shared<StopCommand>(tc, server);
 }

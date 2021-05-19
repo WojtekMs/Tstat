@@ -30,7 +30,15 @@ or
 - git clone \<url>
 - git submodule update --init
 
-Before building the application please change the `log_save_path` defined in `src/tstat/config.hpp`. This variable defines the path where tstat will save collected data.
+Before building the application please change the `log_save_path` defined in `src/tstat/tstat/config.hpp`. This variable defines the path where tstat will save collected data.
+
+- `mkdir build`
+- `cd build`
+- `cmake ..`
+- `make -j`
+- `make install`
+- `./tstat_daemon`
+- `./tstat <command> <args>`
 
 ## Running
 Use this application by running the client app called `tstat`. Issue the commands by passing CLI args to the client.
